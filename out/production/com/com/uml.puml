@@ -1,0 +1,104 @@
+@startuml
+package algonquin.cst8288.fall24.assignment1 {
+
+    package management {
+        class PatientManagement {
+            + validatePatientData(Patient patient): boolean
+            + calculatePatientAge(String dob): long
+            + determineLifeStage(long age): String
+            + createTreatmentPlan(Patient patient): void
+            + generatePrescription(Patient patient, String filename): void
+        }
+    }
+
+    package patient {
+        abstract class Patient {
+            - id: String
+            - name: String
+            - email: String
+            - phoneNumber: String
+            - dateOfBirth: String
+            - age: long
+            - lifeStage: String
+            - plannedTreatment: String
+            - prescription: Prescription
+            + admit(): void
+        }
+        class Inpatient {
+            - roomNumber: String
+            + admit(): void
+        }
+        class Outpatient {
+            - appointmentDate: String
+            + admit(): void
+        }
+        Inpatient --> Patient
+        Outpatient --> Patient
+    }
+
+    package prescription {
+        interface PrescriptionService {
+            + generatePrescription(Patient patient): String
+        }
+        class OnlinePrescriptionService {
+            + generatePrescription(Patient patient): String
+        }
+        class PrintablePrescriptionService {
+            + generatePrescription(Patient patient): String
+        }
+        class Prescription {
+            - dailyDosageCount: long
+            - duration: long
+            - diseaseType: String
+            - surgeryDate: Date
+            - riskFactor: String
+            - isFastingRequired: boolean
+            - followUpDate: Date
+            - medicationName: String
+        }
+        OnlinePrescriptionService -[dashed]-> PrescriptionService
+        PrintablePrescriptionService -[dashed]-> PrescriptionService
+    }
+
+    package treatment {
+        interface TreatmentPlan {
+            + createTreatmentPlan(Patient patient): String
+        }
+        class MedicationTreatmentPlan {
+            + createTreatmentPlan(Patient patient): String
+        }
+        class SurgeryTreatmentPlan {
+            + createTreatmentPlan(Patient patient): String
+        }
+        MedicationTreatmentPlan -[dashed]-> TreatmentPlan
+        SurgeryTreatmentPlan -[dashed]-> TreatmentPlan
+    }
+}
+package alognquin.cst8288.fall24.assignment1 {
+
+    class Constants {
+        {static} + ACUTE_DURATION: long
+        {static} + INFECTION_DURATION: long
+        {static} + CHRONIC_DURATION: long
+        {static} + ACUTE: String
+        {static} + INFECTION: String
+        {static} + CHRONIC: String
+        {static} + CHILD: String
+        {static} + YOUTH: String
+        {static} + ADULT: String
+        {static} + HIGH: String
+        {static} + MEDIUM: String
+        {static} + LOW: String
+    }
+
+    class Physician {
+        + main(String[] args): void
+    }
+}
+
+PatientManagement --> Patient
+PatientManagement --> TreatmentPlan
+PatientManagement --> PrescriptionService
+Patient --> Prescription
+
+@enduml

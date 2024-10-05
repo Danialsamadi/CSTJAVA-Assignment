@@ -1,0 +1,18 @@
+Prescription for Danial Samadi
+Date of Birth: 1970-01-26
+
+Diagnosis: Medication Treatment Plan for Danial Samadi
+
+The patient is diagnosed with Chronic Disease.
+The patient is 54 years old and falls under the Adult category.
+Recommended treatment duration: 30 days.
+Prescribed medication: Amoxicillin
+Dosage: 2 times per day
+Duration: 30 days
+Follow-up date: Sun Nov 03 17:01:53 EST 2024
+
+
+Rx:
+Medication: Amoxicillin
+Dosage: 2 times/day
+Duration: 30 days
